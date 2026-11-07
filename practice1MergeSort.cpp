@@ -2,16 +2,16 @@
 #include <cmath>
 
 void merge(int arr[],int low, int high, int mid){
-    const int SIZE1 = mid-low;
+    const int SIZE1 = mid-low+1;
     const int SIZE2 = high-mid;
-    int* left = new int[SIZE1];
-    int* right = new int[SIZE2];
+    int* left = new int[SIZE1+1];
+    int* right = new int[SIZE2+1];
 
     for(int i=0;i<SIZE1;i++){
-        left[i] = arr[SIZE1+i];
+        left[i] = arr[low+i];
     }
     for(int j=0;j<SIZE2;j++){
-        right[j] = arr[SIZE2+j];
+        right[j] = arr[mid+j+1];
     }
 
     int i=0, j=0 , k=low;
@@ -36,7 +36,7 @@ void mergeSort(int arr[],int low,int high){
 
     int mid = floor((low+high)/2);
     
-    mergeSort(arr,low,mid-1);
+    mergeSort(arr,low,mid);
     mergeSort(arr,mid+1,high);
 
     merge(arr,low,high,mid);
