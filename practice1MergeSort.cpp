@@ -1,17 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-void mergeSort(int arr[],int low,int high){
-    if(low>=high)return;
-
-    int mid = floor((low+high)/2);
-    
-    mergeSort(arr,low,mid-1);
-    mergeSort(arr,mid+1,high);
-
-    merge(arr,low,high,mid);
-}
-
 void merge(int arr[],int low, int high, int mid){
     const int SIZE1 = mid-low;
     const int SIZE2 = high-mid;
@@ -42,7 +31,24 @@ void merge(int arr[],int low, int high, int mid){
     }
 }
 
-int main(){
+void mergeSort(int arr[],int low,int high){
+    if(low>=high)return;
+
+    int mid = floor((low+high)/2);
     
+    mergeSort(arr,low,mid-1);
+    mergeSort(arr,mid+1,high);
+
+    merge(arr,low,high,mid);
+}
+
+
+
+int main(){
+    int test[5] = {1,4,5,2,3};
+    mergeSort(test,0,4);
+    for(int i:test){
+        std::cout<<i<<" ";
+    }
     return 0;
 }
